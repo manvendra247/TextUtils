@@ -1,24 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+// import About from "./About";
+import "./App.css";
+import Navbar from "./components/Navbar";
+import TextForm from "./components/TextForm";
+import React, { useState } from "react";
+// import Alert from "./components/Alert";
 
 function App() {
+  const [mode, setMode] = useState("light"); //whether dark mode is enabled or not.
+  // let myStyle={
+  //   color: "white",
+  //   backgroundColor:"black"
+  // };
+  const toggleMod = () => {
+    if (mode === "light") {
+      console.log(mode);
+      setMode("dark");
+      document.body.style.backgroundColor = "#343a40";
+    } else {
+      setMode("light");
+      document.body.style.backgroundColor = "white";
+      console.log(mode);
+    }
+  };
+  //alert
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar
+        title="text Utils"
+        about="About"
+        mode={mode}
+        toggleMod={toggleMod}
+      />
+      {/* <Alert msg= {msg}></Alert> */}
+      
+      <div
+        className="container my-3"
+        // style={{ color: mode === "dark" ? "dark" : "light" }}
+      >
+        <TextForm heading=" Enter you text here" mode={mode} />
+        {/* <About></About> */}
+      </div>
+    </>
   );
 }
 
